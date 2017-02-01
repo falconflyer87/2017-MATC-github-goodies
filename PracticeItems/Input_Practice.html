@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <style>
+        .flex-container {
+            display: flex;
+        }
+
+    </style>
+
+</head>
+<body>
+    <form id="myform" method="post" action="http://www.uxcobra.com/sendmail.php">
+        <div><h1>Happy Inputs</h1></div>
+      <div class="flex-container">
+        <div>
+          <div>
+              <label for="name">Name:</label><input id="name" name="emailto" type="hidden" value="falconflyer87@hotmail.com" placeholder="name">
+              <span>message subject</span><input type="text" name="emailsubject"/>
+              <span>Your message</span><textarea name="emailcontent"></textarea>
+          </div>
+          <div><label for="email">Email:</label><input id="email" name="email" type="email" placeholder="email"></div>
+        </div>
+        <div>
+          <div><label for="male">Male</label><input id="male" name="male" type="radio"></div>
+          <div><label for="female">Female</label><input id="female" name="female" type="radio"></div>
+        </div>
+        <div>
+            <select for="Hobbies">Hobbies:
+                <option value="1">Sports</option>
+                <option value="2">Eating</option>
+                <option value="3">Sleeping</option>
+            </select>
+        </div>
+        <div>
+            <input type="submit">
+        </div>
+        <div>
+            <input type="reset">
+        </div>
+        <div>
+            <textarea cols="30" rows="5"></textarea>
+        </div>
+      </div>
+    </form>
+
+</body>
+</html>
