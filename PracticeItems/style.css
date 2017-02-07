@@ -1,0 +1,17 @@
+.mydiv{
+    font-size: 46px;
+    background-color: lawngreen;
+
+}
+.background-color{
+    background-color: blue;
+    color: yellow;
+    text-align: center;
+    background-image: url("#");
+    background-position: 50%;
+    height: 100px;
+    width: 100px;
+    background-repeat: no-repeat;
+
+
+}
