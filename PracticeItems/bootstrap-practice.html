@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        body{
+            background-color:Black;
+            font-family: 'Prosto+One';
+        }
+        .navsection{
+            display: flex;
+            justify-content: space-between;
+            width: 90%;
+            background-color: lawngreen;
+            margin: 0 auto;
+            border-radius: 3px;
+            padding: 15px;
+            font-size: 30px;
+        }
+        .container{
+            width: 80%;
+            margin: 0 auto;
+            background-color: lightslategrey;
+            padding: 100px ;
+            border-radius: 15px;
+            font-size: 40px;
+        }
+        .navsection a{
+            color: black;
+            text-decoration: none;
+            padding: 3px
+        }
+        a{
+        }
+
+        .body{
+            color: black;
+            text-decoration: none;
+            text-align: center;
+            font-size: 30px;
+            color: black;
+            background-color: lightslategrey;
+            border-radius: 10px;
+            margin: 10px 5px 5px 5px;
+
+        }
+
+        .navlink:hover {
+            background-color: white;
+        }
+
+
+    </style>
+</head>
+<body>
+
+<nav>
+    <div class="container">
+        <div class="row" class="navsection">
+            <a href="Project1Home.html" class="navlink"><strong>Home</strong></a>
+            <a href="Project1AboutMe.html" class="navlink"><strong>About Me</strong></a>
+            <a href="#" class="navlink"><strong>My Portfolio</strong></a>
+            <a href="#" class="navlink"><strong>Resume</strong></a>
+            <a href="Project1ContactMe.html" class="navlink"><strong>Contact</strong></a>
+        </div>
+    </div>
+</nav>
+
+<form method="post" class="body">
+    <div><label for="name">Name: </label><input id="name" size= "40" name="name" type="text" placeholder="name"></div>
+    <div><label for="email">Email: </label><input id="email" name="email" type="email" placeholder="email"></div>
+    </div>
+    <div>
+        <label for="select">Reasons for Contact: </label><select for="Hobbies">Hobbies:
+        <option value="1">Resume Request</option>
+        <option value="2">Interview Request</option>
+        <option value="3">Job Offer</option>
+    </select>
+    </div>
+    <div>
+        <input type="submit">
+    </div>
+    <div>
+        <textarea cols="30" rows="5"></textarea>
+    </div>
+</form>
+</body>
+</html>
