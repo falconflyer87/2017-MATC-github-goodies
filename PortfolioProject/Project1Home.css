@@ -17,7 +17,7 @@ body{
     width: 80%;
     margin: 0 auto;
     background-color: lightslategrey;
-    padding: 50px 50px 150px 50px;
+    padding: 50px 50px 50px 50px;
     border-radius: 15px;
 }
 .navsection a{
@@ -31,7 +31,7 @@ a{
 }
 .mytitle{
     width: 100%;
-    height: 400px;
+    height: 500px;
     margin: 50px auto;
     padding: 25px 25px 10px 25px;
     background-image: url('Images/Portfolioimage2.JPG');
@@ -56,11 +56,12 @@ a{
 }
 .navlink:hover{
     background-color: white;
+    border-bottom-style: solid;
 }
 
 .container2 {
     text-align: center;
-    font-size: 25px;
+    font-size: 30px;
     color: black;
     padding-top: 0px;
     display: block;
