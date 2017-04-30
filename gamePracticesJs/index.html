@@ -4,10 +4,24 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <style>
+        body{
+            display: flex;
+        }
+        canvas{
+            margin: 0 auto;
+        }
+        #resetbtn{
+            display:none;
+        }
+    </style>
 </head>
 <body onload = "main()">
     <div id = "wrapper"></div>
-
+    <a id="resetbtn" href="javascript: resetgame()">Play Again </a>
+    <span>Score:</span>
+    <div id="scorebox">0</div>
+    <div id="hiscore">Hi Score:</div>
 </body>
 <script src = "gamePractice.js"></script>
 <script src = "sprites.js"></script>

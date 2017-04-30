@@ -5,38 +5,43 @@ var currentState,
     width,
     height,
     frames = 0,
+    score = 0,
+    hiScore = 0,
+    ogroup,
     theHero;
 
 
 var states = {
-    splash: 0,
-    game: 1,
-    score: 2
+    Splash: 0,
+    Game: 1,
+    Score: 2
 
 };
 var canvas;
 var renderingContext;
+var thescore = 0;
 
 function OctoGroup(){
     this.collection =[];
 
     this.reset = function(){
         this.collection = [];
-    }
+    };
 
     this.add = function(){
         this.collection.push(new Octorok());
-    }
+    };
 
     this.update = function(){
         if(frames % 100 === 0){//Add an octorok every 100 frames
             this.add();
         }
-        for(vsr i = 0; len = this.collection.length; i < len; i++){
+        for(var i = 0, len = this.collection.length; i < len; i++) {
             var octorok = this.collection[i];
 
             if(i === 0){
                 octorok.detectCollision();
+                octorok.checkScore();
             }
 
             octorok.x -= 2;
@@ -46,7 +51,7 @@ function OctoGroup(){
                 len --;
             }
         }
-    }
+    };
     this.draw = function () {
         for (var i = 0, len = this.collection.length; i < len; i++){
             var octorok = this.collection[i];
@@ -61,21 +66,36 @@ function Octorok() {
 
     this.width = octorokSprite.width;
     this.height = octorokSprite.height;
+    this.scored = false;
 
     this.detectCollision = function(){
-        if(this.x === (theHero.x + theHero.width)){
-            console.log("you're dead");
+        //console.log(this.x + "-the player is at : " + (thehero.x && the hero.y >= 135) {
+        if(this.x <= (theHero.x + theHero.width) && this.x >= theHero.x && theHero.y >= 135){
+            console.log("Better luck next time!");
+            currentState = states.Score;
+            document.getElementById("resetbtn").style.display = "block";
         }
-    }
+    };
+
+    this.checkScore = function (){
+        if((this.x + this.width) < theHero.x){
+            console.log("add one");
+            thescore ++;
+            this.score = true;
+            document.getElementById("scorebox"),innerHTML = thescore
+        }
+    };
+
     this.draw = function(){
-        octorokSprite.draw(renderingContext, 220, 340)
+        octorokSprite.draw(renderingContext, this.x, this.y);
     }
 }
 
 function Hero(){
-    this.x = 120;
-    this.y = 180;
-    this.width = link.width;
+    this.x = 50;
+    this.y = 160;
+    this.width = 45;
+    this.height = 55;
 
     this.frame = 0;
     this.velocity = 0;
@@ -95,12 +115,13 @@ function Hero(){
         }
     };
     this.update = function(){
-        var h = currentState === states.splash ? 10 : 5;
+        var h = currentState === states.Splash ? 10 : 5;
+        //console.log(h + "hero h rate");
         this.frame += frames % h === 0 ? 1 : 0;
         this.frame %= this.animation.length;
-        console.log(this.frame);
+        //console.log(this.frame);
 
-        if(currentState === states.splash){
+        if(currentState === states.Splash){
             this.updateIdleHero();
 
         }
@@ -109,7 +130,7 @@ function Hero(){
         }
     };
     this.updateIdleHero = function (){
-
+        //this.y = 250
     };
 
     this.updatePlayingHero = function(){
@@ -117,9 +138,9 @@ function Hero(){
         this.y += this.velocity;
 
         //check to see if hit the ground and stay there.
-        if(this.y >= 180){
+        if(this.y >= 160){
             //console.log("hit ground");
-            this.y = 180;
+            this.y = 160;
             this.jumpcount = 2;
             this.velocity = this._jump;
         }
@@ -144,13 +165,28 @@ function Hero(){
 function main() {
     windowSetup();
     canvasSetup();
-    currentState = states.splash;
+    currentState = states.Splash;
     document.body.appendChild(canvas);
-
+    if (localStorage.hiScore) {
+        hiScore = localStorage.hiScore;
+    }
     loadGraphics();
     theHero = new Hero();
     ogroup = new OctoGroup();
+    localStorage.setItem("Highscore", 0);
 
+}
+
+function resetgame(){
+    ogroup.reset();
+        currentState = states.Splash;
+        if(thescore > Number(localStorage.getItem("Highscore"))){
+            localStorage.setItem("Highscore", thescore);
+        }
+        document.getElementById("myhighscore").innerHTML = localStorage.getItem("Highscore");
+        thescore = 0;
+        documetn.getElementById("scorebox").innerHTML = thescore;
+        document.getElementById("resetbtn".style.display = "none");
 }
 
 function windowSetup() {
@@ -172,7 +208,6 @@ function windowSetup() {
 }
 
 function onpress(evt){
-    console.log("click happened");
 
     switch (currentState){
         case states.Splash:
@@ -181,6 +216,17 @@ function onpress(evt){
             break;
         case states.Game:
             theHero.jump();
+            break;
+        case states.Score:
+            ogroup.reset();
+            o2group.reset();
+            if (score > hiScore) {
+                localStorage.hiScore = score;
+                hiScore = localStorage.hiScore;
+            }
+            score = 0;
+            velocity = 3;
+            currentState = states.Splash;
             break;
 
     }
@@ -204,7 +250,6 @@ function loadGraphics(){
         initSprites(this);
         renderingContext.fillStyle = "#3db0dd";
 
-        //link.draw(renderingContext, 100, 100);
         gameLoop();
 
     };
@@ -220,7 +265,7 @@ function gameLoop(){
 
 function update(){
     frames ++;
-    if(currentState = states.Game){
+    if(currentState === states.Game){
         ogroup.update();
     }
     theHero.update();
@@ -229,11 +274,10 @@ function update(){
 
 function render(){
     renderingContext.fillRect(0, 0, width, height);
-    backgroundSprite.draw(renderingContext, 0, 200);
+    backgroundSprite.draw(renderingContext, 0, 180);
     //octorok.draw(renderingContext, 220, 340);
     ogroup.draw(renderingContext);
     theHero.draw(renderingContext);
-
 
 
 }
